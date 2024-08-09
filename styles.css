@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); /* Importing a cursive font */
+
+body {
+    background-image: url('background.png'); /* Static background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Great Vibes', cursive; /* Apply the font to the body */
+}
+
+.flower-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.flower {
+    width: 150px;
+    height: 450px;
+    position: relative;
+}
+
+.flower::before, .flower::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flower::before {
+    background-color: black;
+    width: 4px;
+    height: 0;
+    animation: growStem 2s forwards;
+}
+
+.flower::after {
+    width: 100px;
+    height: 100px;
+    background-image: url('flowerblossom.png'); /* Flower blossom image */
+    background-size: cover;
+    background-position: center;
+    top: -55px;
+    opacity: 0;
+    animation: growBlossom 4s forwards 2s;
+}
+
+@keyframes growStem {
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes growBlossom {
+    0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+#envelope {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#envelope:hover {
+    transform: scale(1.05);
+}
+
+#opened-letter {
+    display: none;
+    width: 60%; /* Make the opened letter 60% of the screen width */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(0);
+    z-index: 10;
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+
+.letter-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.valentine-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    z-index: 11; /* Ensure the text is on top of the opened letter */
+}
+
+.valentine-message p {
+    margin: 0;
+    color: #333;
+    font-size: 48px; /* Increase the font size */
+    opacity: 0;
+    animation: typing 2s steps(24) forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+}
+
+.valentine-message p:nth-child(2) {
+    animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+        border-right-color: transparent;
+    }
+}
+
+#emote {
+    width:70%;
+    height:70%;
+}
